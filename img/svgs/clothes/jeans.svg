@@ -1,4 +1,4 @@
-<svg height="100%" stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="476.494 809.209 138.657 298.131" width="100%" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+<svg height="auto" stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="476.494 809.209 138.657 298.131" width="144px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
 <defs/>
     <g id="Layer">
 <path d="M476.494 809.209L615.151 809.209L607.55 1107.33L573.865 1105.97C573.865 1105.97 575.143 869.801 544.667 869.723C514.192 869.645 516.306 1106.06 516.306 1106.06L483.78 1107.34L476.494 809.209Z" fill="#20366c" fill-rule="nonzero" opacity="1" stroke="none"/>
@@ -6,3 +6,6 @@
         <path d="M607.998 1089.77L573.821 1088.86L573.865 1105.94L607.55 1107.33L607.998 1089.77Z" fill="#6881bd" fill-rule="nonzero" opacity="1" stroke="none"/>
 </g>
 </svg>
+
+<!--  left: 76px;-->
+<!--  top: 416px;-->

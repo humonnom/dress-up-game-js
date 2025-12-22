@@ -1,7 +1,10 @@
-<svg height="100%" stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="461.46 550.574 172.109 245.272" width="100%" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+<svg height="auto" stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="461.46 550.574 172.109 245.272" width="180" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
 <defs/>
     <g id="Layer">
 <path d="M477.145 717.323C476.188 722.115 469.055 721.043 469.549 716.181L485.162 562.403C485.314 560.902 486.33 559.629 487.76 559.147L503.952 553.695C506.755 552.752 509.529 555.193 508.95 558.092L477.145 717.323Z" fill="#000002" fill-rule="nonzero" opacity="1" stroke="none"/>
         <path d="M617.885 716.323C618.842 721.115 625.975 720.043 625.481 715.181L609.868 561.403C609.716 559.902 608.699 558.629 607.269 558.147L591.077 552.695C588.275 551.752 585.501 554.193 586.08 557.092L617.885 716.323Z" fill="#000002" fill-rule="nonzero" opacity="1" stroke="none"/>
 </g>
 </svg>
+
+<!--  left: 60px;-->
+<!--  top: 152px;-->
