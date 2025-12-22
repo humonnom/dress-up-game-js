@@ -84,6 +84,131 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+/* 전체 레이아웃 */
+body {
+  margin: 0;
+  padding: 20px;
+  background-color: #f5f5f5;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+main {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.game-container {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+/* 캐릭터 영역 */
+.character-area {
+  position: relative;
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  min-height: 500px;
+}
+
+#character {
+  display: block;
+  pointer-events: none;
+}
+
+#character-items {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  width: 300px;
+  height: 100%;
+  pointer-events: none;
+}
+
+#character-items img {
+  position: absolute;
+  cursor: move;
+  pointer-events: auto;
+}
+
+/* 아이템 보드 */
+.item-board {
+  flex: 1;
+  background: white;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.item-board h2 {
+  margin-top: 0;
+  margin-bottom: 25px;
+  color: #333;
+  font-size: 24px;
+  border-bottom: 2px solid #4CAF50;
+  padding-bottom: 10px;
+}
+
+.item-category {
+  margin-bottom: 30px;
+}
+
+.item-category h3 {
+  margin: 0 0 15px 0;
+  color: #555;
+  font-size: 18px;
+}
+
+.item-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+}
+
+.item {
+  width: 100px;
+  height: auto;
+  padding: 10px;
+  background: white;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  cursor: grab;
+  transition: all 0.2s ease;
+}
+
+.item:hover {
+  transform: scale(1.05);
+  border-color: #4CAF50;
+  box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
+}
+
+.item.dragging {
+  opacity: 0.5;
+  cursor: grabbing;
+  transform: scale(1.1);
+}
+
+/* 드래그 중인 요소 */
+.drag-preview {
+  position: fixed;
+  pointer-events: none;
+  z-index: 1000;
+  opacity: 0.8;
+}
+
+/* 드롭 가능 영역 하이라이트 */
+.character-area.drag-over {
+  background-color: #e8f5e9;
+  border: 2px dashed #4CAF50;
+}
+
 /* ==========================================================================
    Helper classes
    ========================================================================== */

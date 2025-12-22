@@ -22,15 +22,60 @@
   <meta name="theme-color" content="#fafafa">
 </head>
 <body>
+<main>
+  <div class="game-container">
+    <!-- 캐릭터 영역 -->
+    <div class="character-area">
+      <img id="character" src="img/svgs/character.svg" width="300px" alt="캐릭터">
+      <!-- 드롭된 아이템들이 여기에 배치됩니다 -->
+      <div id="character-items"></div>
+    </div>
 
-<!--캐릭터-->
-<img src="img/svgs/character/body.svg" width="300px" alt="body">
-<!--캐릭터 svg 눈코입 다 있는 걸로 바꾸기-->
+    <!-- 아이템 보드 -->
+    <div class="item-board">
+      <h2>아이템</h2>
 
-<!--아이템 보드-->
-<!--1. 아이템 화면에 띄우기-->
-<!--2. 아이템 드래그 앤 드롭 기능-->
-<!--3. 아이템 드롭시 자석기능-->
+      <!-- 머리 카테고리 -->
+      <div class="item-category">
+        <h3>머리</h3>
+        <div class="item-list">
+          <img src="img/svgs/hair/short.svg" class="item draggable" data-category="hair" alt="짧은 머리" draggable="true">
+        </div>
+      </div>
+
+      <!-- 옷 카테고리 -->
+      <div class="item-category">
+        <h3>옷</h3>
+        <div class="item-list">
+          <img src="img/svgs/clothes/three-color-knit.svg" class="item draggable" data-category="clothes" alt="니트" draggable="true">
+          <img src="img/svgs/clothes/jeans.svg" class="item draggable" data-category="clothes" alt="청바지" draggable="true">
+          <img src="img/svgs/clothes/socks.svg" class="item draggable" data-category="clothes" alt="양말" draggable="true">
+        </div>
+      </div>
+
+      <!-- 신발 카테고리 -->
+      <div class="item-category">
+        <h3>신발</h3>
+        <div class="item-list">
+          <img src="img/svgs/shoes/three-lined-slipper-bottom.svg" class="item draggable" data-category="shoes" alt="슬리퍼 아래" draggable="true">
+          <img src="img/svgs/shoes/three-lined-slipper-top.svg" class="item draggable" data-category="shoes" alt="슬리퍼 위" draggable="true">
+        </div>
+      </div>
+
+      <!-- 액세서리 카테고리 -->
+      <div class="item-category">
+        <h3>액세서리</h3>
+        <div class="item-list">
+          <img src="img/svgs/item/cap.svg" class="item draggable" data-category="accessory" alt="모자" draggable="true">
+          <img src="img/svgs/item/backpack-back.svg" class="item draggable" data-category="accessory" alt="백팩 뒤" draggable="true">
+          <img src="img/svgs/item/backpack-front.svg" class="item draggable" data-category="accessory" alt="백팩 앞" draggable="true">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</main>
 </body>
 
 </html>
