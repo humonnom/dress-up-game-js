@@ -8,6 +8,17 @@ class DressUpGame {
     this.offset = { x: 0, y: 0 };
     this.isDraggingFromBoard = false;
 
+    // 파자마 요소 참조
+    this.pajamaTop = document.getElementById('pajama-top');
+    this.pajamaBottom = document.getElementById('pajama-bottom');
+
+    // 카테고리별 착용한 아이템 수 추적
+    this.wornItemsCount = {
+      top: 0,
+      outer: 0,
+      pants: 0
+    };
+
     // 카테고리별 z-index 매핑
     this.zIndexMap = {
       behindBody: -1, // 몸 뒤
@@ -127,6 +138,7 @@ class DressUpGame {
     if (this.isGroupItem(sourceItem.src)) {
       const newGroup = document.createElement('div');
       newGroup.className = 'placed-item placed-group';
+      newGroup.dataset.category = category;
       newGroup.style.position = 'absolute';
       newGroup.style.left = "0";
       newGroup.style.top = "0";
@@ -143,22 +155,29 @@ class DressUpGame {
       newGroup.appendChild(newFrontImg);
 
       // 배치된 아이템에 이동 및 제거 기능 추가
-      this.addItemControls(newGroup);
+      this.addItemControls(newGroup, category);
       this.characterItems.appendChild(newGroup);
     } else {
       const newItem = this.createNewImgElement(this.getOnBodyPath(sourceItem.src), sourceItem.alt);
+      newItem.dataset.category = category;
 
       // 카테고리별 z-index 적용
       const zIndex = this.zIndexMap[category] || 1;
       newItem.style.zIndex = zIndex.toString();
 
       // 배치된 아이템에 이동 및 제거 기능 추가
-      this.addItemControls(newItem);
+      this.addItemControls(newItem, category);
       this.characterItems.appendChild(newItem);
+    }
+
+    // 파자마에 영향을 주는 카테고리인 경우 카운트 증가 및 업데이트
+    if (category === 'top' || category === 'outer' || category === 'pants') {
+      this.wornItemsCount[category]++;
+      this.updatePajamaVisibility();
     }
   }
 
-  addItemControls(item) {
+  addItemControls(item, category) {
     let isDragging = false;
     let currentX = 0;
     let currentY = 0;
@@ -203,6 +222,12 @@ class DressUpGame {
     const handleDoubleClick = () => {
       if (confirm('이 아이템을 제거하시겠습니까?')) {
         item.remove();
+
+        // 파자마에 영향을 주는 카테고리인 경우 카운트 감소 및 업데이트
+        if (category === 'top' || category === 'outer' || category === 'pants') {
+          this.wornItemsCount[category]--;
+          this.updatePajamaVisibility();
+        }
       }
     };
 
@@ -216,6 +241,22 @@ class DressUpGame {
     const rect = item.getBoundingClientRect();
     currentX = parseInt(item.style.left) || 0;
     currentY = parseInt(item.style.top) || 0;
+  }
+
+  updatePajamaVisibility() {
+    // 상의 또는 아우터를 입으면 파자마 상의 숨김
+    if (this.wornItemsCount.top > 0 || this.wornItemsCount.outer > 0) {
+      this.pajamaTop.style.display = 'none';
+    } else {
+      this.pajamaTop.style.display = 'block';
+    }
+
+    // 바지를 입으면 파자마 하의 숨김
+    if (this.wornItemsCount.pants > 0) {
+      this.pajamaBottom.style.display = 'none';
+    } else {
+      this.pajamaBottom.style.display = 'block';
+    }
   }
 }
 
