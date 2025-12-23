@@ -110,9 +110,7 @@ main {
   margin-left: 20px;
   border-radius: 15px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  /*min-height: 500px;*/
-  height: 880px;
-  width: 400px;
+  z-index: 0;
 }
 
 #character {
@@ -141,10 +139,6 @@ main {
   height: 100%;
   cursor: move;
   pointer-events: auto;
-}
-
-#character-items .placed-group .group-part {
-  cursor: move;
 }
 
 /* 아이템 보드 */

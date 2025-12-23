@@ -68,7 +68,7 @@ class DressUpGame {
 
     // 아이템 보드에서 드래그한 경우 새 아이템 생성
     if (this.isDraggingFromBoard) {
-      this.createItemOnCharacter(this.draggedElement, 0, 0);
+      this.createItemOnCharacter(this.draggedElement);
     }
 
     this.draggedElement = null;
@@ -80,43 +80,54 @@ class DressUpGame {
     return originalSrc.replace('.svg', '-on-body.svg');
   }
 
-  createItemOnCharacter(sourceItem, x, y) {
-    // 그룹 아이템인지 확인
-    if (sourceItem.classList.contains('item-group')) {
-      // 그룹 아이템인 경우 div 컨테이너 생성
+  getGroupItemOnBodyPaths(originalSrc) {
+    const path = originalSrc.split('/').reverse()[0].split('.')[0];
+    switch (path) {
+      case 'backpack':
+        return {
+          back: originalSrc.replace('.svg', '-on-body-back.svg'),
+          front: originalSrc.replace('.svg', '-on-body-front.svg'),
+        }
+    }
+  }
+
+  isGroupItem(src) {
+    return src.includes('backpack');
+  }
+
+  createNewImgElement(src, alt, className) {
+    const img = document.createElement('img');
+    img.src = src;
+    img.alt = alt;
+    img.className = className;
+    img.style.position = 'absolute';
+    img.style.width = '100%';
+    img.style.height = 'auto';
+    img.style.top = '0';
+    img.style.left = '0';
+    return img;
+  }
+
+  createItemOnCharacter(sourceItem) {
+    if (this.isGroupItem(sourceItem.src)) {
       const newGroup = document.createElement('div');
       newGroup.className = 'placed-item placed-group';
       newGroup.style.position = 'absolute';
-      newGroup.style.left = `${x}px`;
-      newGroup.style.top = `${y}px`;
+      newGroup.style.left = "0";
+      newGroup.style.top = "0";
 
-      // 첫 번째 이미지의 경로를 기준으로 -on-body.svg 경로 생성
-      const firstImg = sourceItem.querySelector('.group-part');
-      const onBodySrc = this.getOnBodyPath(firstImg.src);
+      const {back, front} = this.getGroupItemOnBodyPaths(sourceItem.src);
+      const newBackImg = this.createNewImgElement(back, sourceItem.alt, 'placed-item back');
+      const newFrontImg = this.createNewImgElement(front, sourceItem.alt, 'placed-item front');
+      newGroup.appendChild(newBackImg);
+      newGroup.appendChild(newFrontImg);
 
-      // -on-body.svg 이미지 사용
-      const newImg = document.createElement('img');
-      newImg.src = onBodySrc;
-      newImg.alt = firstImg.alt;
-      newImg.className = 'group-part';
-      newImg.style.position = 'absolute';
-      newImg.style.width = '100%';
-      newImg.style.height = 'auto';
-      newImg.style.top = '0';
-      newImg.style.left = '0';
-      newGroup.appendChild(newImg);
 
       // 배치된 아이템에 이동 및 제거 기능 추가
       this.addItemControls(newGroup);
       this.characterItems.appendChild(newGroup);
     } else {
-      // 단일 이미지인 경우
-      const newItem = document.createElement('img');
-      newItem.src = this.getOnBodyPath(sourceItem.src);  // -on-body.svg 버전 사용
-      newItem.alt = sourceItem.alt;
-      newItem.className = 'placed-item';
-      newItem.style.left = `${x}px`;
-      newItem.style.top = `${y}px`;
+      const newItem = this.createNewImgElement(this.getOnBodyPath(sourceItem.src), sourceItem.alt);
 
       // 배치된 아이템에 이동 및 제거 기능 추가
       this.addItemControls(newItem);

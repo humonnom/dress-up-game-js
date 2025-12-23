@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Created with Vectornator (http://vectornator.io/) -->
+<svg height="880.0px" stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 400 880" width="400.0px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+<path d="M177.566 237.089C177.566 237.089 178.452 247.04 192.462 247.04C206.472 247.04 208.332 237.089 208.332 237.089C208.332 237.089 257.087 249.113 268.883 264.118C280.679 279.123 319.625 468.167 319.625 468.167L296.189 474.627L259.091 349.975C258.903 349.269 255.845 349.548 255.843 350.279L260.077 498.363L121.45 498.49L122.965 349.283C122.97 348.782 119.056 348.563 118.932 349.049L87.5237 477.4L63.1776 469.206C63.1776 469.206 102.96 275.364 113.753 263.148C124.547 250.932 177.566 237.089 177.566 237.089Z" id="Fill"/>
+</defs>
+<g id="three-colored-knit">
+<g opacity="1">
+<use fill="#9ea8b4" fill-rule="nonzero" opacity="1" stroke="none" xlink:href="#Fill"/>
+<clipPath clip-rule="nonzero" id="ClipPath">
+<use xlink:href="#Fill"/>
+</clipPath>
+<g clip-path="url(#ClipPath)">
+<path d="M336.576 498.447L44.7359 498.447L44.7359 411.328L336.576 411.328L336.576 498.447Z" fill="#d4d8dc" fill-rule="nonzero" opacity="1" stroke="none"/>
+<path d="M336.576 411.328L44.7359 411.328L44.7359 324.208L336.576 324.208L336.576 411.328Z" fill="#979ba0" fill-rule="nonzero" opacity="1" stroke="none"/>
+<path d="M336.576 324.208L44.7359 324.208L44.7359 237.089L336.576 237.089L336.576 324.208Z" fill="#5c6978" fill-rule="nonzero" opacity="1" stroke="none"/>
+</g>
+</g>
+</g>
+</svg>
