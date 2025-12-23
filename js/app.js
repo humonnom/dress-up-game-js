@@ -12,11 +12,16 @@ class DressUpGame {
     this.pajamaTop = document.getElementById('pajama-top');
     this.pajamaBottom = document.getElementById('pajama-bottom');
 
-    // 카테고리별 착용한 아이템 수 추적
-    this.wornItemsCount = {
-      top: 0,
-      outer: 0,
-      pants: 0
+    // 카테고리별 현재 착용 중인 아이템 추적 (각 카테고리당 하나의 아이템만)
+    this.wornItems = {
+      socks: null,
+      shoes: null,
+      pants: null,
+      top: null,
+      outer: null,
+      accessory: null,
+      hair: null,
+      hat: null
     };
 
     // 카테고리별 z-index 매핑
@@ -135,6 +140,14 @@ class DressUpGame {
   createItemOnCharacter(sourceItem) {
     const category = sourceItem.dataset.category;
 
+    // 같은 카테고리의 기존 아이템이 있으면 제거
+    if (this.wornItems[category]) {
+      this.wornItems[category].remove();
+      this.wornItems[category] = null;
+    }
+
+    let newItem;
+
     if (this.isGroupItem(sourceItem.src)) {
       const newGroup = document.createElement('div');
       newGroup.className = 'placed-item placed-group';
@@ -154,27 +167,25 @@ class DressUpGame {
       newGroup.appendChild(newBackImg);
       newGroup.appendChild(newFrontImg);
 
-      // 배치된 아이템에 이동 및 제거 기능 추가
-      this.addItemControls(newGroup, category);
-      this.characterItems.appendChild(newGroup);
+      newItem = newGroup;
     } else {
-      const newItem = this.createNewImgElement(this.getOnBodyPath(sourceItem.src), sourceItem.alt);
+      newItem = this.createNewImgElement(this.getOnBodyPath(sourceItem.src), sourceItem.alt);
       newItem.dataset.category = category;
 
       // 카테고리별 z-index 적용
       const zIndex = this.zIndexMap[category] || 1;
       newItem.style.zIndex = zIndex.toString();
-
-      // 배치된 아이템에 이동 및 제거 기능 추가
-      this.addItemControls(newItem, category);
-      this.characterItems.appendChild(newItem);
     }
 
-    // 파자마에 영향을 주는 카테고리인 경우 카운트 증가 및 업데이트
-    if (category === 'top' || category === 'outer' || category === 'pants') {
-      this.wornItemsCount[category]++;
-      this.updatePajamaVisibility();
-    }
+    // 배치된 아이템에 이동 및 제거 기능 추가
+    this.addItemControls(newItem, category);
+    this.characterItems.appendChild(newItem);
+
+    // 현재 카테고리에 착용한 아이템으로 등록
+    this.wornItems[category] = newItem;
+
+    // 파자마 표시 업데이트
+    this.updatePajamaVisibility();
   }
 
   addItemControls(item, category) {
@@ -223,11 +234,13 @@ class DressUpGame {
       if (confirm('이 아이템을 제거하시겠습니까?')) {
         item.remove();
 
-        // 파자마에 영향을 주는 카테고리인 경우 카운트 감소 및 업데이트
-        if (category === 'top' || category === 'outer' || category === 'pants') {
-          this.wornItemsCount[category]--;
-          this.updatePajamaVisibility();
+        // wornItems에서 제거
+        if (this.wornItems[category] === item) {
+          this.wornItems[category] = null;
         }
+
+        // 파자마 표시 업데이트
+        this.updatePajamaVisibility();
       }
     };
 
@@ -245,14 +258,14 @@ class DressUpGame {
 
   updatePajamaVisibility() {
     // 상의 또는 아우터를 입으면 파자마 상의 숨김
-    if (this.wornItemsCount.top > 0 || this.wornItemsCount.outer > 0) {
+    if (this.wornItems.top || this.wornItems.outer) {
       this.pajamaTop.style.display = 'none';
     } else {
       this.pajamaTop.style.display = 'block';
     }
 
     // 바지를 입으면 파자마 하의 숨김
-    if (this.wornItemsCount.pants > 0) {
+    if (this.wornItems.pants) {
       this.pajamaBottom.style.display = 'none';
     } else {
       this.pajamaBottom.style.display = 'block';
